@@ -1,0 +1,120 @@
+<!--<mat-form-field>
+    <input matInput placeholder="Search" />
+</mat-form-field>-->
+<div class="headerTab">
+    <button class="logoutButton" mat-raised-button color="primary" (click)="logout()">LOG OUT</button>
+    </div>
+    <ng-template #loading>
+        <p>Loading...</p>
+    </ng-template>
+    
+    <ng-container *ngIf="allPatients | async; let patients" ; else loading>
+        <div class="split left">
+        <table>
+            <tr>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>OPTIONS</th>
+        </tr>
+            <ng-container *ngFor="let patient of patients; let last = last">
+                <tr>
+            <td>{{ patient.personalDetails.name }}</td>
+            <td>{{ patient.personalDetails.age }}</td><br/>
+            <button mat-raised-button color="primary" (click)="populateForm(patient)">EDIT</button>
+            <button mat-raised-button color="primary" (click)="delete(patient)">DELETE</button>
+        </tr>
+                <!--<mat-list-item>
+                    <mat-expansion-panel expanded>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <p matLine>{{ patient.personalDetails.name }}</p>
+                    <p matLine>
+                     Age: {{ patient.personalDetails.age }}
+                    </p>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>  
+                <!--<button mat-raised-button color="primary" (click)="prs.getPatientById(patient)">Edit</button>-->
+                <!--<button mat-raised-button color="primary" (click)="populateForm(patient)">EDIT</button>
+                </mat-list-item>-->
+                <!--<mat-divider *ngIf="!last"></mat-divider>-->
+            </ng-container>
+        </table> 
+    </div>   
+        <router-outlet></router-outlet>
+    
+    <div class="split right">
+    <mat-accordion>
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title> Personal Details </mat-panel-title>
+                <mat-panel-description> Patient Details </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <form [formGroup] = "updateForm">
+                <input type="hidden" formControlName="$key"/>
+                <mat-form-field>
+                    <mat-label>ID</mat-label>
+                    <input matInput formControlName="identity" />
+                </mat-form-field>
+            <br/>
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" />
+                </mat-form-field>
+                <br />
+                
+            
+                <mat-form-field>
+                    
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option value="Male"> Male </mat-option>
+                        <mat-option value="Female"> Female </mat-option>
+                        <mat-option value="other"> Other </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br />
+                <mat-form-field>
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" min="1" formControlName="age" />
+                </mat-form-field>
+                <br />
+                <mat-form-field>
+                    <mat-label>Date of Birth</mat-label>
+                    <input formControlName="dob" matInput [matDatepicker]="picker" (focus)="picker.open()" (click)="picker.open()" />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <br />
+                <mat-form-field>
+                    <mat-label>Nationality</mat-label>
+                    <input matInput formControlName="nationality" />
+                </mat-form-field>
+                <br />
+                <mat-form-field>
+                    <mat-label>Passport Number</mat-label>
+                    <input matInput formControlName="passportNumber" />
+                </mat-form-field>
+                <br />
+                <!--<mat-form-field>
+                    <mat-label>Aadhar Number</mat-label>
+                    <input matInput type="number" formControlName="aadharNumber" />
+                </mat-form-field>-->
+            </form>
+            <mat-action-row>
+                <button mat-raised-button color="primary" (click)="upDate(patient)">
+                    UPDATE
+                </button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    

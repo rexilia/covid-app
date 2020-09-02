@@ -1,0 +1,36 @@
+
+<div class="login-box">
+  <p>Login</p>
+<mat-tab-group backgroundColor="primary">
+    <form [formGroup]="loginForm">
+  <mat-tab label="Data Officer">
+  <br/><br/><input placeholder="Email" type="email" formControlName="email"><br /><br />
+    <input placeholder="Password" type="password" formControlName="password"><br /><br />
+  </mat-tab>
+  <mat-tab label="Manager">
+    <br/><br/><input placeholder="Email" type="email" formControlName="email" /><br /><br />
+    <input placeholder="Password" type="password" formControlName="password" /><br /><br />
+  </mat-tab>
+  <mat-tab label="Field Officer">
+    <br/><br/><input placeholder="Email" type="email"><br /><br />
+    <input placeholder="Password" type="password"><br /><br />
+  </mat-tab>
+</form>
+
+</mat-tab-group>
+<button mat-raised-button color="primary" (click)="login()">LOGIN</button>
+</div>
+
+
+
+<!--<mat-accordion>
+  <p *ngIf="loading">Loading...</p>  
+  <mat-form-field>
+    <form [formGroup]="loginForm" *ngIf="!loading">-->
+    <!--<input placeholder="Email" type="email" formControlName="email" /><br /><br />
+    <input placeholder="Password" type="password" formControlName="password" /><br /><br />
+    <p *ngIf="!!errorMessage" style="color: red">{{ errorMessage }}</p>
+    <button mat-raised-button[disabled]="!loginForm.valid" (click)="login()">LOGIN</button>
+  </mat-form-field>
+</mat-accordion>-->
+

@@ -1,0 +1,42 @@
+:host {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to right bottom,blue,aqua,white);
+    font-family: 'Lucida Sans';
+    font-size: 20px;
+}
+
+
+.login-box {
+    padding-top: 20px;
+    text-align: center;
+    font-family: 'Lucida Sans';
+    width: 480px;
+    height: 300px;
+    border: 2px,solid,black;
+    background-color: white;
+    border-radius: 10px;
+}
+/*button{
+    background-color:aqua;
+    border-right:2px,solid,black;
+    height:30px;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+    width: 100px;
+    cursor: pointer;
+}
+button:hover{
+    opacity: 1;
+}*/
+.tab{
+    width: 100%;
+    border:none;
+    height: 50px;
+}

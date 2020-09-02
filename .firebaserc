@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "surfboard-32e75": {
+      "hosting": {
+        "observable-demo": [
+          "surfboard-32e75"
+        ]
+      }
+    }
+  }
+}
