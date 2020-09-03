@@ -12,14 +12,19 @@ import { IPatientRecord } from './interfaces';
 export class PatientRecordService {
 
     constructor(private afd: AngularFireDatabase) { }
-      upDate(
+      upDatePatient(
         patientId: string,
         patientRecord: Partial<IPatientRecord>,
         uid: string
         ) 
         {
-            if ($key != null)
-            this.afd.list('patients').update($key,'');
+            const saveValue = this._setAuditField(
+                patientRecord,
+                uid,
+            );
+            console.log(saveValue);
+            console.log(patientId);
+            return this.afd.object('/patients/'+patientId.$key).update(saveValue);
         }
     
     addNewPatientRecord(patientRecord: Partial<IPatientRecord>, uid: string) {
@@ -53,19 +58,14 @@ export class PatientRecordService {
                 shareReplay()
             );
     }
-
-    deletePatientRecord(patientId: string, uid: string) {
-        // Special handling needed
+    deletePatientRecord(patientId: string)
+    {
+        console.log(patientId);
+         this.afd.object('/patients/'+patientId.$key).remove();
     }
 
     getPatientById(patientId: string,patientRecord: Partial<IPatientRecord>) {
-       var groupId = patientId.$key;
-      /*var array=patientArray.find(function(element){
-          if( IPatientRecord.patientId.personalDetails.identity == patientId)
-          return patientId.value;
-      })
-      console.log(array);*/
-      //console.log(this.afd.list('groupId'));
+      console.log(patientId);
       return patientId;
     }
 

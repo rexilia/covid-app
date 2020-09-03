@@ -6,19 +6,23 @@
   <mat-tab label="Data Officer">
   <br/><br/><input placeholder="Email" type="email" formControlName="email"><br /><br />
     <input placeholder="Password" type="password" formControlName="password"><br /><br />
+    <button mat-raised-button color="primary" (click)="login()">LOGIN</button>
   </mat-tab>
   <mat-tab label="Manager">
     <br/><br/><input placeholder="Email" type="email" formControlName="email" /><br /><br />
     <input placeholder="Password" type="password" formControlName="password" /><br /><br />
+    <button mat-raised-button color="primary" (click)="login()">LOGIN</button>
   </mat-tab>
   <mat-tab label="Field Officer">
     <br/><br/><input placeholder="Email" type="email"><br /><br />
     <input placeholder="Password" type="password"><br /><br />
+    <button mat-raised-button color="primary" (click)="login()">LOGIN</button>
   </mat-tab>
+  
 </form>
 
 </mat-tab-group>
-<button mat-raised-button color="primary" (click)="login()">LOGIN</button>
+<!--<button mat-raised-button color="primary" (click)="login()">LOGIN</button>-->
 </div>
 
 

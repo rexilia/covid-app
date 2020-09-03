@@ -35,6 +35,7 @@ export interface IPersonalDetails {
     nationality: string;
     passportNumber?: string;
     aadharNumber?: number;
+    place:string;
 }
 
 export interface IContactInformation {

@@ -23,8 +23,6 @@ export class PatientRecordComponent implements OnInit {
 
     private initaliseForms() {
         this.personalDetailsForm = this.fb.group({
-            $key:[null],
-            identity:['',Validators.required],
             name: ['', [Validators.required, Validators.minLength(3)]],
             gender: ['Male', [Validators.required]],
             age: [1, [Validators.required, Validators.max(110)]],
@@ -34,10 +32,7 @@ export class PatientRecordComponent implements OnInit {
                 '',
                 [Validators.minLength(6), Validators.maxLength(11)],
             ],
-            aadharNumber: [
-                null,
-                [Validators.minLength(12), Validators.maxLength(12)],
-            ],
+            place:['',[Validators.required]],
         });
     }
 

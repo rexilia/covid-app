@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/fo
 import { PatientRecordService } from 'src/app/shared/patient-record.service';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -15,7 +16,8 @@ import { take } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
     allPatients: Observable<IPatientRecord[]>;
-    constructor(private prs: PatientRecordService, private as: AuthService,private fb: FormBuilder,) {}
+    errorMessage: any;
+    constructor(private prs: PatientRecordService, private as: AuthService,private fb: FormBuilder,private router: Router,) {}
     patientArray: AngularFireList<any>;
     showDeletedMessage: boolean;
     
@@ -23,18 +25,15 @@ export class HomeComponent implements OnInit {
     updateForm : FormGroup;
     private initaliseForms() {
         this.updateForm = this.fb.group({
-            
-            identity:['',Validators.required],
             name: ['', [Validators.required, Validators.minLength(3)]],
             gender: ['Male', [Validators.required]],
             age: [1, [Validators.required, Validators.max(110)]],
-            dob: [new Date(1970, 1, 0)],
             nationality: ['Indian', [Validators.required]],
             passportNumber: [
                 '',
                 [Validators.minLength(6), Validators.maxLength(11)],
             ],
-            //aadharNumber: ['',[Validators.minLength(12), Validators.maxLength(12)],],
+            place: ['',[Validators.required]],
         });
     }
     ngOnInit():void{
@@ -52,6 +51,7 @@ export class HomeComponent implements OnInit {
     }
     upDate(patient:string)
     {
+        console.log(patient);
             const value = this.updateForm.value;
             //if (value.dob) {
               //  value.dob = value.dob.getTime();
@@ -80,6 +80,16 @@ export class HomeComponent implements OnInit {
                     })*/
             });
     }
-
-    
+    logout() {
+        this.as
+            .logout()
+            .then(() => this.navigateToLogin())
+            .catch((err) => {
+                this.errorMessage = err.message;
+            });
+    }
+    navigateToLogin()
+    {
+        this.router.navigate(['\login']);
+    }
 }

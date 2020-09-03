@@ -1,8 +1,10 @@
 <!--<mat-form-field>
     <input matInput placeholder="Search" />
 </mat-form-field>-->
-<div class="headerTab">
-    <button class="logoutButton" mat-raised-button color="primary" (click)="logout()">LOG OUT</button>
+<div class="body">
+    <div class="headerTab">
+        
+    <a router-link='\login'><button class="logoutButton" mat-raised-button color="primary" (click)="logout()">LOG OUT</button></a>
     </div>
     <ng-template #loading>
         <p>Loading...</p>
@@ -10,34 +12,30 @@
     
     <ng-container *ngIf="allPatients | async; let patients" ; else loading>
         <div class="split left">
+            <p>PATIENT RECORD</p>
+            <div class = "add">
+                <a routerLink ="/patient-record"><button mat-raised-button color="primary">ADD RECORDS</button></a>
+            </div>
         <table>
             <tr>
             <th>NAME</th>
             <th>AGE</th>
+            <th>NATIONALITY</th>
+            <th>GENDER</th>
+            <th>PLACE</th>
             <th>OPTIONS</th>
         </tr>
             <ng-container *ngFor="let patient of patients; let last = last">
                 <tr>
             <td>{{ patient.personalDetails.name }}</td>
-            <td>{{ patient.personalDetails.age }}</td><br/>
-            <button mat-raised-button color="primary" (click)="populateForm(patient)">EDIT</button>
-            <button mat-raised-button color="primary" (click)="delete(patient)">DELETE</button>
+            <td>{{ patient.personalDetails.age }}</td>
+            <td>{{ patient.personalDetails.nationality }}</td>
+            <td>{{ patient.personalDetails.gender }}</td>
+            <td>{{ patient.personalDetails.place }}</td>
+            <td><button mat-raised-button color="primary" (click)="populateForm(patient)">EDIT</button></td>
+            <td><button mat-raised-button color="primary" (click)="upDate(patient)">UPDATE</button></td>
+            <td><button mat-raised-button color="primary" (click)="prs.deletePatientRecord(patient)">DELETE</button></td>
         </tr>
-                <!--<mat-list-item>
-                    <mat-expansion-panel expanded>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <p matLine>{{ patient.personalDetails.name }}</p>
-                    <p matLine>
-                     Age: {{ patient.personalDetails.age }}
-                    </p>
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                </mat-expansion-panel>  
-                <!--<button mat-raised-button color="primary" (click)="prs.getPatientById(patient)">Edit</button>-->
-                <!--<button mat-raised-button color="primary" (click)="populateForm(patient)">EDIT</button>
-                </mat-list-item>-->
-                <!--<mat-divider *ngIf="!last"></mat-divider>-->
             </ng-container>
         </table> 
     </div>   
@@ -52,12 +50,7 @@
             </mat-expansion-panel-header>
         
             <form [formGroup] = "updateForm">
-                <input type="hidden" formControlName="$key"/>
-                <mat-form-field>
-                    <mat-label>ID</mat-label>
-                    <input matInput formControlName="identity" />
-                </mat-form-field>
-            <br/>
+                <!--<input type="hidden" formControlName="$key"/>-->
                 <mat-form-field>
                     <mat-label>Name</mat-label>
                     <input matInput formControlName="name" />
@@ -80,12 +73,12 @@
                     <input matInput type="number" min="1" formControlName="age" />
                 </mat-form-field>
                 <br />
-                <mat-form-field>
+                <!--<mat-form-field>
                     <mat-label>Date of Birth</mat-label>
                     <input formControlName="dob" matInput [matDatepicker]="picker" (focus)="picker.open()" (click)="picker.open()" />
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
+                </mat-form-field>-->
                 <br />
                 <mat-form-field>
                     <mat-label>Nationality</mat-label>
@@ -97,13 +90,13 @@
                     <input matInput formControlName="passportNumber" />
                 </mat-form-field>
                 <br />
-                <!--<mat-form-field>
-                    <mat-label>Aadhar Number</mat-label>
-                    <input matInput type="number" formControlName="aadharNumber" />
-                </mat-form-field>-->
+                <mat-form-field>
+                    <mat-label>Place</mat-label>
+                    <input matInput type="text" formControlName="place" />
+                </mat-form-field>
             </form>
             <mat-action-row>
-                <button mat-raised-button color="primary" (click)="upDate(patient)">
+                <button mat-raised-button color="primary" (click)="upDate($key)">
                     UPDATE
                 </button>
             </mat-action-row>

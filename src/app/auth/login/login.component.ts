@@ -48,7 +48,19 @@ export class LoginComponent implements OnInit {
                 this.loginForm.reset();
             });
     }
-
+    loginManager() {
+        const lfv = this.loginForm.value;
+        this.as
+            .login(lfv.email, lfv.password)
+            .then(() => this.navigateToManager())
+            .catch((err) => {
+                this.errorMessage = err.message;
+                this.loginForm.reset();
+            });
+    }
+    navigateToManager() {
+        this.router.navigate(['src\app\home\manager\manager.component.html']);
+    }
     navigateToHome() {
         this.router.navigate(['']);
     }

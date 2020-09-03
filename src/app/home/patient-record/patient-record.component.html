@@ -1,17 +1,16 @@
+<div class="headerTab">
+    
+    <a router-link='\login'><button class="logoutButton" mat-raised-button color="primary" (click)="logout()">LOG OUT</button></a>
+    </div>
+<a routerLink ="/"><button class="back" mat-raised-button color="primary">View Previous Records</button></a>
 <mat-accordion>
     <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
             <mat-panel-title> Personal Details </mat-panel-title>
-            <mat-panel-description> Patient Details </mat-panel-description>
+            <mat-panel-description> Add Records Here </mat-panel-description>
         </mat-expansion-panel-header>
         
         <form [formGroup]="personalDetailsForm">
-            <input type="hidden" formControlName="$key"/>
-            <mat-form-field>
-                <mat-label>ID</mat-label>
-                <input matInput formControlName="identity" />
-            </mat-form-field>
-        <br/>
             <mat-form-field>
                 <mat-label>Name</mat-label>
                 <input matInput formControlName="name" />
@@ -44,14 +43,15 @@
             </mat-form-field>
             <br />
             <mat-form-field>
+                <mat-label>Place</mat-label>
+                <input matInput formControlName="place" />
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
                 <mat-label>Passport Number</mat-label>
                 <input matInput formControlName="passportNumber" />
             </mat-form-field>
             <br />
-            <mat-form-field>
-                <mat-label>Aadhar Number</mat-label>
-                <input matInput type="number" formControlName="aadharNumber" />
-            </mat-form-field>
         </form>
         <mat-action-row>
             <button mat-raised-button color="primary" (click)="save()" [disabled]="

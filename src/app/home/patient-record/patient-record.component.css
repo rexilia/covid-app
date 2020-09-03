@@ -1,0 +1,17 @@
+.back{
+    margin-left:81%;
+    margin-top:1%;
+    margin-bottom: 2%;
+}
+.headerTab{
+    width:98%;
+    height:10%;
+    background-image:linear-gradient(to right,blue,aqua,white);
+    border: 1px double whitesmoke;
+    margin-top:3%;
+    text-align:left;
+}
+.logoutButton{
+    margin-left:90%;
+    margin-top:1%;
+}
